@@ -7,7 +7,7 @@ import json
 
 def addTokens(addUsername, addToken):
 
-    addData = {'name': addUsername, 'addedTokens': 500, "addedXp": 500}
+    addData = {'name': addUsername, 'added red astronaut': 10, "added blook": 10}
     addHeaders = {'Authorization': addToken}
 
     addData = json.dumps(addData)
@@ -31,7 +31,7 @@ def buy(buyHeaders, buyUsername, box):
     print(response.text)
     response = int(''.join(filter(str.isdigit, response.text)))
     text = {'tokens' : response} 
-    while text['tokens'] > 24:
+    while text['blooks'] > 24:
     
         response = requests.put('https://api.blooket.com/api/users/unlockblook', data=buyData, headers=buyHeaders)
         text = json.loads(response.text)
@@ -67,7 +67,7 @@ def sell(sellHeaders, sellUsername, box):
     text = {'tokens' : int(response.text[1:-2])} 
 
 
-    if text['tokens'] < 25:
+    if text['blooks'] < 25:
         print('Worked')
     else:
         buy(buyUsername=sellUsername, buyHeaders=sellHeaders, box=box)
